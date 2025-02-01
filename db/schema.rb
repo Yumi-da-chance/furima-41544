@@ -10,13 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_26_023540) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_01_075637) do
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "text"
     t.text "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+    t.string "nickname", default: "例) furima太郎", null: false
+    t.string "email", default: "PC・携帯どちらでも可", null: false
+    t.string "encrypted_password", default: "6文字以上の半角英数字", null: false
+    t.string "family_name", default: "例) 山田", null: false
+    t.string "first_name", default: "例) 陸太郎", null: false
+    t.string "family_name_kana", default: "例) ヤマダ", null: false
+    t.string "first_name_kana", default: "例) リクタロウ", null: false
+    t.date "birth_date", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
