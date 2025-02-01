@@ -11,7 +11,7 @@
 | first_name         | string              | null: false               |
 | family_name_kana   | string              | null: false               |
 | first_name_kana    | string              | null: false               |
-| birth_date         | data                | null: false               |
+| birth_date         | date                | null: false               |
 
 ### Association
 
@@ -20,20 +20,20 @@
 
 ## items table
 
-| Column                              | Type       | Options                        |
-|-------------------------------------|------------|--------------------------------|
-| image                               | string     | null: false                    |
-| item_name                           | string     | null: false                    |
-| item_information                    | text       | null: false                    |
-| seller_name                         | references | null: false, foreign_key: true |
-| category                            | string     | null: false                    |
-| condition                           | string     | null: false                    |
-| shipping_cost                       | string     | null: false                    |
-| shipping_area                       | string     | null: false                    |
-| shipping_days                       | string     | null: false                    |
-| price                               | string     | null: false                    |
-| commission                          | string     | null: false                    |
-| profit  　　                        | string     | null: false                    |
+| Column                              | Type       | Options                               |
+|-------------------------------------|------------|---------------------------------------|
+| image                               | string     | null: false                           |
+| item_name                           | string     | null: false                           |
+| item_information                    | text       | null: false                           |
+| seller_name                         | references | null: false, foreign_key: true        |
+| category                            | string     | null: false                           |
+| condition                           | string     | null: false                           |
+| shipping_cost                       | string     | null: false                           |
+| shipping_area                       | string     | null: false                           |
+| shipping_days                       | string     | null: false                           |
+| price                               | string     | null: false                           |
+| commission                          | decimal    | precision: 5, scale: 2, null: false   |
+| profit                              | decimal    | precision: 10, scale: 2, null: false  |
 
 ### Association
 
@@ -66,7 +66,6 @@
 | address_line    | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
-| tel             | string     | null: false                    |
 
 ### Association
 
