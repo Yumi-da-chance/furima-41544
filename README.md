@@ -32,7 +32,7 @@
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| item             | string     | null: false                    |
+| item             | references | null: false, foreign_key: true |
 | customer-name    | references | null: false, foreign_key: true |
 
 ### Association
@@ -42,11 +42,11 @@
 
 ## shipping table
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| address     | string     | null: false                    |
-| tel         | string     | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| address         | string     | null: false                    |
+| tel             | string     | null: false                    |
+| customer_name   | references | null: false, foreign_key: true |
 
 ### Association
 
