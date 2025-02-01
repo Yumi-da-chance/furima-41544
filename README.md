@@ -6,7 +6,7 @@
 |--------------------|---------------------|---------------------------|
 | nickname           | string              | null: false               |
 | email              | string              | null: false, unique: true |
-| password           | string              | null: false, unique: true |
+| encrypted_password | string              | null: false, unique: true |
 | family_name        | string              | null: false               |
 | first_name         | string              | null: false               |
 | family_name_kana   | string              | null: false               |
@@ -22,18 +22,16 @@
 
 | Column                              | Type       | Options                               |
 |-------------------------------------|------------|---------------------------------------|
-| image                               | string     | null: false                           |
 | item_name                           | string     | null: false                           |
 | item_information                    | text       | null: false                           |
-| seller_name                         | references | null: false, foreign_key: true        |
-| category                            | string     | null: false                           |
-| condition                           | string     | null: false                           |
-| shipping_cost                       | string     | null: false                           |
-| shipping_area                       | string     | null: false                           |
-| shipping_days                       | string     | null: false                           |
-| price                               | string     | null: false                           |
-| commission                          | decimal    | precision: 5, scale: 2, null: false   |
-| profit                              | decimal    | precision: 10, scale: 2, null: false  |
+| user                                | references | null: false, foreign_key: true        |
+| category_id                         | integer     | null: false                           |
+| condition_id                        | integer    | null: false                           |
+| shipping_cost_id                    | integer    | null: false                           |
+| shipping_area_id                    | integer    | null: false                           |
+| shipping_days_i                     | integer    | null: false                           |
+| price                               | integer    | null: false                           |
+
 
 ### Association
 
@@ -45,23 +43,19 @@
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
 | item             | references | null: false, foreign_key: true |
-| customer-name    | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
-- belongs_to :user
 - has_one :shipping
 
 ## shipping table
 
 | Column          | Type       | Options                        |
 |-----------------|------------|--------------------------------|
-| item            | references | null: false, foreign_key: true |
-| price           | references | null: false, foreign_key: true |
-| customer_name   | references | null: false, foreign_key: true |
 | postal_code     | string     | null: false                    |
-| prefecture      | string     | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | city            | string     | null: false                    |
 | address_line    | string     | null: false                    |
 | building_name   | string     |                                |
