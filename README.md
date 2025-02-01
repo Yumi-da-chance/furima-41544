@@ -1,24 +1,54 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| email              | string              | null: false, unique: true |
+| password           | string              | null: false, unique: true |
+| name               | string              | null: false               |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+* has_many :items
+* has_many :records
 
-* Database creation
+## items table
 
-* Database initialization
+| Column                              | Type       | Options                        |
+|-------------------------------------|------------|--------------------------------|
+| item_name                           | string     | null: false                    |
+| price                               | string     | null: false                    |
+| item_information                    | text       | null: false                    |
+| seller_name                         | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :record
 
-* Deployment instructions
+## records table
 
-* ...
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| item             | string     | null: false                    |
+| customer-name    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- has_one :shipping
+
+## shipping table
+
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| address     | string     | null: false                    |
+| tel         | string     | null: false                    |
+| user        | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :record
+- belongs_to :user
