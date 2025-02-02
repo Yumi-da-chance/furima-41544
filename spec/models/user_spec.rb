@@ -15,13 +15,13 @@ RSpec.describe User, type: :model do
     it 'emailが空では登録できない' do
       @user.email = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Email can't be blank", "Email is invalid"
+      expect(@user.errors.full_messages).to include "Email can't be blank", 'Email is invalid'
     end
 
     it 'emailは@を含む必要があること' do
       @user.email = 'qqqqqq'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Email is invalid"
+      expect(@user.errors.full_messages).to include 'Email is invalid'
     end
 
     it 'emailが一意性であること' do
@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user)
       another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors.full_messages).to include "Email has already been taken"
+      expect(another_user.errors.full_messages).to include 'Email has already been taken'
     end
 
     it 'passwordとpassword_confirmationは、値の一致が必須であること' do
@@ -50,19 +50,19 @@ RSpec.describe User, type: :model do
       @user.password = '11'
       @user.password_confirmation = '11'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+      expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
     end
 
     it 'passwordが英字のみでは登録できない' do
       @user.password = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password is invalid" 
+      expect(@user.errors.full_messages).to include 'Password is invalid'
     end
-    
+
     it 'passwordが数字のみでは登録できない' do
       @user.password = '111111'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password is invalid"
+      expect(@user.errors.full_messages).to include 'Password is invalid'
     end
 
     it 'password_confirmationが空では登録できない' do
@@ -80,7 +80,7 @@ RSpec.describe User, type: :model do
     it 'family_nameが全角でないと登録できない' do
       @user.family_name = '111111'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Family name is invalid"
+      expect(@user.errors.full_messages).to include 'Family name is invalid'
     end
 
     it 'first_nameが空では登録できない' do
@@ -92,9 +92,8 @@ RSpec.describe User, type: :model do
     it 'first_nameが全角でないと登録できない' do
       @user.first_name = '111111'
       @user.valid?
-      expect(@user.errors.full_messages).to include "First name is invalid"
+      expect(@user.errors.full_messages).to include 'First name is invalid'
     end
-
 
     it 'family_name_kanaが空では登録できない' do
       @user.family_name_kana = ''
@@ -105,19 +104,19 @@ RSpec.describe User, type: :model do
     it 'family_name_kanaが全角でないと登録できない' do
       @user.family_name_kana = '111111'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Family name kana is invalid"
+      expect(@user.errors.full_messages).to include 'Family name kana is invalid'
     end
 
     it 'first_name_kanaが空では登録できない' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include  "First name kana can't be blank"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
 
     it 'first_name_kanaが全角でないと登録できない' do
       @user.first_name_kana = '111111'
       @user.valid?
-      expect(@user.errors.full_messages).to include "First name kana is invalid"
+      expect(@user.errors.full_messages).to include 'First name kana is invalid'
     end
 
     it 'birth_dateが空では登録できない' do
@@ -125,7 +124,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Birth date can't be blank"
     end
-
-
-  end  
+  end
 end
