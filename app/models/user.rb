@@ -17,4 +17,6 @@ class User < ApplicationRecord
          has_many :items
          has_many :records
 
+         validates :nickname, presence: true
+         
 end
