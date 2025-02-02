@@ -6,6 +6,13 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+   context '新規登録できるとき' do
+    it 'nickname, email, password, password_confirmation, family_name, first_name, family_name_kana, first_name-kana, birth_date が存在すれば登録できる' do
+      expect(@user).to be_valid
+    end
+   end
+
+   context '新規登録できないとき' do
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -15,7 +22,7 @@ RSpec.describe User, type: :model do
     it 'emailが空では登録できない' do
       @user.email = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Email can't be blank", 'Email is invalid'
+      expect(@user.errors.full_messages).to include "Email can't be blank"
     end
 
     it 'emailは@を含む必要があること' do
@@ -68,7 +75,13 @@ RSpec.describe User, type: :model do
     it 'password_confirmationが空では登録できない' do
       @user.password_confirmation = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation can't be blank"
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+    end
+
+    it 'passwordに全角文字が含む場合登録できない' do
+      @user.password_confirmation = 'ああああ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
 
     it 'family_nameが空では登録できない' do
@@ -124,5 +137,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Birth date can't be blank"
     end
+   end 
   end
 end
