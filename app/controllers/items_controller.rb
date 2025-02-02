@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    # 必要に応じてロジックを追加
+    @items = Item.order("created_at DESC")
   end
 
   private
