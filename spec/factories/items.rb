@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :item do
-
     item_name                             { 'あああ' }
-    item_information                      { 'あああ'}
+    item_information                      { 'あああ' }
     price                                 { '1000' }
 
     association :user
@@ -14,10 +13,9 @@ FactoryBot.define do
 
     after(:build) do |item|
       item.image.attach(
-        io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'test_image.png')), filename: 'test_image.png', content_type: 'image/png')
-
-
-  
+        io: File.open(Rails.root.join('spec', 'fixtures', 'files',
+                                      'test_image.png')), filename: 'test_image.png', content_type: 'image/png'
+      )
     end
   end
 end
