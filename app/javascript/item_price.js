@@ -12,9 +12,6 @@ const price = () => {
       addTaxDom.innerHTML = tax;
       profitDom.innerHTML = profit;
 
-      console.log("Item price:", inputValue);
-      console.log("Tax:", tax);
-      console.log("Profit:", profit);
     });
   }
 };

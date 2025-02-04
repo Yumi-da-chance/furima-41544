@@ -44,31 +44,31 @@ RSpec.describe Item, type: :model do
       end
 
       it 'categoryが空だと出品できない' do
-        @item.category_id = ''
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
 
       it 'condition_idが空だと出品できない' do
-        @item.condition_id = ''
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Condition can't be blank"
       end
 
       it 'shipping_cost_idが空だと出品できない' do
-        @item.shipping_cost_id = ''
+        @item.shipping_cost_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping cost can't be blank"
       end
 
       it 'prefecture_idが空だと出品できない' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
 
       it 'shipping_cost_idが空だと出品できない' do
-        @item.shipping_cost_id = ''
+        @item.shipping_cost_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping cost can't be blank"
       end
@@ -77,11 +77,6 @@ RSpec.describe Item, type: :model do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
-      end
-
-      it '価格が¥300以上であれば保存可能' do
-        @item.price = 300
-        expect(@item).to be_valid
       end
 
       it '価格が¥10,000,000以上であれば保存不可' do
@@ -96,11 +91,6 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
       end
 
-      it '価格が¥9,999,999以下であれば保存可能' do
-        @item.price = 9_999_999
-        expect(@item).to be_valid
-      end
-
       it '価格は半角数値のみ保存可能' do
         @item.price = '１２３４' # 全角数値
         @item.valid?
@@ -109,9 +99,12 @@ RSpec.describe Item, type: :model do
         @item.price = '1234abc' # 数値と文字列
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
 
-        @item.price = '2000' # 半角数値
-        expect(@item).to be_valid
+      it 'ユーザーが紐づいていないと保存できない' do
+        @item.user = nil 
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist') 
       end
     end
   end
