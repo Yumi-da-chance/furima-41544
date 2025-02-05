@@ -2,19 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @category = FactoryBot.create(:category)
-    @condition = FactoryBot.create(:condition)
-    @shipping_cost = FactoryBot.create(:shipping_cost)
-    @prefecture = FactoryBot.create(:prefecture)
-    @shipping_day = FactoryBot.create(:shipping_day)
-    @item = FactoryBot.build(:item,
-                             user: @user,
-                             category: @category,
-                             condition: @condition,
-                             shipping_cost: @shipping_cost,
-                             prefecture: @prefecture,
-                             shipping_day: @shipping_day)
+    @item = FactoryBot.build(:item)
   end
 
   describe '出品' do

@@ -3,13 +3,14 @@ FactoryBot.define do
     item_name                             { 'あああ' }
     item_information                      { 'あああ' }
     price                                 { '1000' }
+    
+    category_id                           { 2 }
+    condition_id                          { 2 }
+    shipping_cost_id                      { 2 }
+    prefecture_id                         { 2 }
+    shipping_day_id                       { 2 }
 
     association :user
-    association :category
-    association :condition
-    association :shipping_cost
-    association :prefecture
-    association :shipping_day
 
     after(:build) do |item|
       item.image.attach(
