@@ -126,35 +126,51 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
-
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <li class='list'>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= "商品名" %>
-          </h3>
-          <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
+      <ul class='item-lists'>
+        <% @items.each do |item| %> 
+          <li class="item_post">
+            <div class="image" style="background-image: url(<%= url_for(item.image) %>);"></div>
+          </li>
         <% end %>
-      </li>
+      </ul>
+
+      <ul class='item-lists'>
+        <% if @items.present? %>
+          <% @items.each do |item| %> 
+            <li class='list'>
+              <%= link_to items_path(item) do %>
+                <div class='item-img-content'>
+                  <%= image_tag "item-sample.png", class: "item-img" %>
+
+                  <%# 商品が売れていればsold outを表示しましょう %>
+                  <% if item.respond_to?(:sold?) && item.sold? %> 
+                    <div class='sold-out'>
+                      <span>Sold Out!!</span>
+                    </div>
+                  <% end %>
+                  <%# //商品が売れていればsold outを表示しましょう %>
+
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.item_name %>
+                  </h3>
+                  <div class='item-price'>
+                    <span><%= item.price %>円<br><%= item.shipping_cost_id %></span>
+                    <div class='star-btn'>
+                      <%= image_tag "star.png", class:"star-icon" %>
+                      <span class='star-count'>0</span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        <% else %>
+          <p>商品がありません</p>
+        <% end %>
+      </ul>
+      
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
