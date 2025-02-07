@@ -146,13 +146,13 @@
                     <%= image_tag "item-sample.png", class: "item-img" %>
                   <% end %>
 
-                  <%# 商品が売れていればsold outを表示しましょう %>
+ 
                   <% if item.respond_to?(:sold?) && item.sold? %> 
                     <div class='sold-out'>
                       <span>Sold Out!!</span>
                     </div>
                   <% end %>
-                  <%# //商品が売れていればsold outを表示しましょう %>
+           
                 </div>
               
                 <div class='item-info'>
@@ -189,8 +189,7 @@
             <%end%>
           </li>  
         <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
     </ul>
   </div>
   <%# /商品一覧 %>
