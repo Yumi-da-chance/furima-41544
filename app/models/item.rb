@@ -18,6 +18,16 @@ class Item < ApplicationRecord
   validates :shipping_cost_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true,
-                    numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+
+  def shipping_cost
+    case shipping_cost_id
+    when 2
+      "着払い(購入者負担)"
+    when 3
+      "送料込み(出品者負担)"
+    else
+      "不明"
+    end
+  end
 end

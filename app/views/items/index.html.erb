@@ -138,9 +138,13 @@
         <% if @items.present? %>
           <% @items.each do |item| %> 
             <li class='list'>
-              <%= link_to items_path(item) do %>
+              <%= link_to items_path(item) do %> 
                 <div class='item-img-content'>
-                  <%= image_tag "item-sample.png", class: "item-img" %>
+                  <% if item.image.attached? %> 
+                    <%= image_tag url_for(item.image), class: "item-img" %>
+                  <% else %>
+                    <%= image_tag "item-sample.png", class: "item-img" %>
+                  <% end %>
 
                   <%# 商品が売れていればsold outを表示しましょう %>
                   <% if item.respond_to?(:sold?) && item.sold? %> 
@@ -156,14 +160,14 @@
                     <%= item.item_name %>
                   </h3>
                   <div class='item-price'>
-                    <span><%= item.price %>円<br><%= item.shipping_cost_id %></span>
+                    <span><%= item.price %>円<br><%= item.shipping_cost %></span>
                     <div class='star-btn'>
                       <%= image_tag "star.png", class:"star-icon" %>
                       <span class='star-count'>0</span>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              <% end %> 
             </li>
           <% end %>
         <% else %>
