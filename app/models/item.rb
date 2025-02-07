@@ -30,4 +30,12 @@ class Item < ApplicationRecord
       "不明"
     end
   end
+
+
+
+  def sold?
+    self.status == 'sold'
+  end
+
+
 end
