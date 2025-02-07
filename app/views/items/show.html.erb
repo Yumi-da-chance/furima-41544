@@ -7,7 +7,11 @@
       <%= "商品名" %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
+      <% if @item.image.attached? %>
+        <%= image_tag url_for(@item.image), class: "item-box-img" %>
+      <% else %>
+        <%= image_tag "item-sample.png", class: "item-box-img" %>
+      <% end %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
         <span>Sold Out!!</span>
