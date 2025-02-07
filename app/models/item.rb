@@ -31,11 +31,13 @@ class Item < ApplicationRecord
     end
   end
 
-
+  has_one :order
 
   def sold?
-    self.status == 'sold'
+    order.present?
   end
+
+
 
 
 end
