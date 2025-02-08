@@ -32,7 +32,7 @@ class Item < ApplicationRecord
     end
   end
 
-  has_one :order
+  #has_one :order
 
   def sold?
     order.present?
