@@ -138,7 +138,7 @@
         <% if @items.present? %>
           <% @items.each do |item| %> 
             <li class='list'>
-              <%= link_to items_path(item) do %> 
+              <%= link_to item_path(item) do %> 
                 <div class='item-img-content'>
                   <% if item.image.attached? %> 
                     <%= image_tag url_for(item.image), class: "item-img" %>
