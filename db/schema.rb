@@ -39,11 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_07_171815) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
     t.string "item_name", null: false
     t.text "item_information", null: false
@@ -64,11 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_07_171815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_orders_on_item_id"
-  end
-
-  create_table "prefectures", charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "shipping_costs", charset: "utf8mb3", force: :cascade do |t|

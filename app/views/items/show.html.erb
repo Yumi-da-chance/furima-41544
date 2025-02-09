@@ -7,6 +7,11 @@
       <%= @item.item_name %>
     </h2>
     <div class="item-img-content">
+       <% if @item.image.attached? %>
+        <%= image_tag url_for(@item.image), class: "item-box-img" %>
+      <% else %>
+        <%= image_tag "item-sample.png", class: "item-box-img" %>
+      <% end %>
       <%@item.image.attached? %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
@@ -26,7 +31,7 @@
   <% if user_signed_in?%> <%# && @item.order.nil?%>
    <%# if @item.order.nil? %>
     <% if current_user == @item.user %>
-     <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+     <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
      <p class="or-text">or</p>
      <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
     <% else %>
