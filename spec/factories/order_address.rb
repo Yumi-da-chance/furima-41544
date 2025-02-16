@@ -8,5 +8,6 @@ FactoryBot.define do
     phone_number                 { '08081166079' }
     item_id                      { nil }
     user_id                      { nil }
+    token                        { 'tok_abcdefghijk00000000000000000' }
   end
 end

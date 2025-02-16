@@ -18,7 +18,8 @@ class Item < ApplicationRecord
   validates :shipping_cost_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, presence: true,
+                    numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   def shipping_cost
     case shipping_cost_id
@@ -31,13 +32,9 @@ class Item < ApplicationRecord
     end
   end
 
-  # def sold?
-  # purchased?
-  # end
+  has_one :order
 
-  # has_one :order
-
-  # def sold?
-  # order.present?
-  # end
+  def sold_out?
+    order.present?
+  end
 end

@@ -147,11 +147,11 @@
                   <% end %>
 
  
-                  <%# if item.respond_to?(:sold?) && item.sold? %> 
+                  <% if item.order.present? %> 
                     <div class='sold-out'>
                       <span>Sold Out!!</span>
                     </div>
-                  <%# end %>
+                  <% end %>
            
                 </div>
               
