@@ -5,7 +5,7 @@ class OrderAddress
 
   with_options presence: true do
     validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }
-    validates :prefecture_id, presence: true, numericality: { only_integer: true, greater_than: 0 }
+    validates :prefecture_id, presence: true, numericality: { other_than: 0, message: "can't be blank" }
     validates :city, :address_line, presence: true
     validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input only number" }
     validates :item_id, presence: true, numericality: { only_integer: true }
