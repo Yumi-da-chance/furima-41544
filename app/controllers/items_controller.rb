@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_not_authorized
-    return unless @item.order.present? || @item.user_id != current_user.id
+    return unless @item.order.present?
 
     redirect_to root_path
   end
