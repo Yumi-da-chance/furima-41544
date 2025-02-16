@@ -32,13 +32,9 @@ class Item < ApplicationRecord
     end
   end
 
-  # def sold?
-  # purchased?
-  # end
+  has_one :order
 
-  # has_one :order
-
-  # def sold?
-  # order.present?
-  # end
+  def sold_out?
+    order.present?
+  end
 end
