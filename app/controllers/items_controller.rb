@@ -29,7 +29,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(params_to_update)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to @item
     else
       render :edit, status: :unprocessable_entity
